@@ -1,0 +1,9 @@
+# environment
+**/node_modules
+**/env
+
+# production
+/dist
+/.vscode
+
+.env
