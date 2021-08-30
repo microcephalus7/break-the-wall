@@ -5,10 +5,10 @@ from django_mysql.models import ListTextField
 
 
 class Account(User):
-    emailId = models.EmailField(max_length=128, unique=True, null=True)
-    kakaoId = models.TextField(max_length=128, unique=True, null=True)
-    appleId = models.TextField(max_length=128, unique=True, null=True)
-    googleId = models.TextField(max_length=128, unique=True, null=True)
+    emailId = models.EmailField(max_length=128, unique=True, blank=True)
+    kakaoId = models.TextField(max_length=128, unique=True, blank=True)
+    appleId = models.TextField(max_length=128, unique=True, blank=True)
+    googleId = models.TextField(max_length=128, unique=True, blank=True)
     pubDate = models.DateTimeField(auto_now_add=True)
     updateDate = models.DateTimeField(auto_now=True)
 
@@ -28,20 +28,20 @@ class Profile(models.Model):
     # user 참조
     account = models.OneToOneField(Account, on_delete=models.CASCADE)
     # 생성일
-    pubDate = models.DateTimeField(auto_now_add=True, null=True)
+    pubDate = models.DateTimeField(auto_now_add=True)
     # 수정일
     updateDate = models.DateTimeField(auto_now=True)
     # 유저 실명
-    name = models.TextField(max_length=50, null=True)
+    name = models.TextField(max_length=50, blank=True)
     # 전화번호
-    phoneNumber = models.TextField(max_length=12, null=True)
+    phoneNumber = models.TextField(max_length=12, blank=True)
     # 성별
     gender = ['male', 'femail', 'unknown']
     # 생일
-    birthday = models.DateField(null=True)
+    birthday = models.DateField(blank=True)
     # 위치 정보
-    latitude = models.FloatField(null=True)
-    longitude = models.FloatField(null=True)
+    latitude = models.FloatField(blank=True)
+    longitude = models.FloatField(blank=True)
     # 취향 정보
     tendencies = ListTextField(
         base_field=CharField(max_length=20),
